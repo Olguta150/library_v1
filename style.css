@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+}
+
+.header {
+    position: relative;
+    width: 100vw;
+    height: 100px;
+    padding: 0 100px;
+    background: rgb(218, 215, 205);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+    font-family: 'Roboto Slab', serif;
+    font-size: 45px;
+    font-weight: 600;
+    z-index: 1;
+}
+
+.header-wrap {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: default;
+}
+
+.add-book-btn {
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.main {
+    display: flex;
+    width: 100vw;
+    height: calc(100vh - 100px);
+}
+
+.menu {
+    position: relative;
+    min-width: 350px;
+    background: #ccd5ae;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+    font-family: 'Roboto Slab', serif;
+}
+
+.details-title {
+    font-size: 38px;
+    padding: 20px;
+}
+
+.details {
+    font-size: 20px;
+    padding: 0 20px;
+}
+
+.details > div {
+    padding-bottom: 10px;
+}
+
+.library {
+    flex-grow: 1;
+    min-height: calc(100vh - 100px);
+    background: #e9edc9;
+}
