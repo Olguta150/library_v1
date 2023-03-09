@@ -7,22 +7,29 @@
     box-sizing: border-box;
 }
 
-.container {
+body {
     width: 100vw;
     height: 100vh;
+    background: #e9edc9;
+    /* overflow-x: hidden; */
 }
 
+/* .container {
+    width: 100vw;
+    height: 100vh;
+} */
+
 .header {
-    position: relative;
+    position: fixed;
     width: 100vw;
     height: 100px;
     padding: 0 100px;
-    background: rgb(218, 215, 205);
+    background: #dad7cd;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
     font-family: 'Roboto Slab', serif;
     font-size: 45px;
     font-weight: 600;
-    z-index: 1;
+    z-index: 3;
 }
 
 .header-wrap {
@@ -41,15 +48,18 @@
 .main {
     display: flex;
     width: 100vw;
+    padding-top: 100px;
     height: calc(100vh - 100px);
 }
 
 .menu {
-    position: relative;
+    position: fixed;
     min-width: 350px;
+    height: 100vh;
     background: #ccd5ae;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
     font-family: 'Roboto Slab', serif;
+    z-index: 2;
 }
 
 .details-title {
@@ -67,7 +77,71 @@
 }
 
 .library {
+    position: absolute;
+    width: 100vw;
     flex-grow: 1;
     min-height: calc(100vh - 100px);
     background: #e9edc9;
 }
+
+.grid {
+    position: absolute;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    /* flex-wrap: wrap; */
+    gap: 40px;
+    /* border: 1px solid red; */
+    padding: 70px 100px;
+    width: calc(100vw - 350px);
+    min-height: calc(100vh - 100px);
+    left: 350px;
+}
+
+.book {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-grow: 1;
+    /* width: 350px; */
+    height: 350px;
+    border: 1px solid;
+    border-radius: 10px;
+    font-size: 23px;
+    padding: 10px 25px;
+    gap: 15px;
+    background: #ccd5ae;
+    letter-spacing: 0.2px;
+}
+
+.name {
+    font-family: 'Roboto Slab', serif;
+    font-size: 25px;
+}
+
+.status, .delete {
+    width: 100%;
+    padding: 8px;
+    text-align: center;
+    border-radius: 2px;
+    border: 1px solid;
+}
+
+.status {
+    background: #52796f;
+}
+
+.delete {
+    background: #cad2c5;
+}
+
+/* @media screen and (max-width: 1500px) {
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 1fr);
+    }
+
+    body {
+        background: rgb(181, 52, 159);
+    }
+} */
