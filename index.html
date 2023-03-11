@@ -12,7 +12,7 @@
     <div class="container">
         <div class="header">
             <div class="header-wrap">
-                <div class="title">library</div>
+                <div class="header-title">library</div>
                 <div class="add-book-btn btn">Add book</div>
             </div>
         </div>
@@ -132,8 +132,35 @@
     </div>
     <div class="overlay">
         <div class="popup">
-            <form action="submit"></form>
+            <form class="form">
+                <div class="close-window"></div>
+                <div class="form-title">
+                    <div class="title">add a new book</div>
+                </div>
+                <div class="form-content">
+                    <div class="category">
+                        <label for="title">Book title</label>
+                        <input type="text" id="title" name="book_title" placeholder="The Da Vinci Code">
+                    </div>
+                    <div class="category">
+                        <label for="author">Book author</label>
+                        <input type="text" id="author" name="book_author" placeholder="Dan Brown">
+                    </div>
+                    <div class="category">
+                        <label for="pages">Book pages</label>
+                        <input type="number" id="pages" name="book_pages" placeholder="489">
+                    </div>
+                    <div class="check">
+                        <input type="checkbox" id="status" name="book_status">
+                        <label for="status">Already read</label>
+                    </div>
+                </div>
+                <button class="btn form-button">Add book</button>
+            </form>
         </div>
     </div>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 </html>
