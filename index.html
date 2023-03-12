@@ -28,7 +28,7 @@
             </div>
             <div class="library">
                 <div class="grid">
-                    <div class="book">
+                    <!-- <div class="book">
                         <div class="name">They both die at the end</div>
                         <div class="author">Adam Silvera</div>
                         <div class="pages">315 pages</div>
@@ -125,7 +125,7 @@
                         <div class="pages">315 pages</div>
                         <div class="btn status tbr">TBR</div>
                         <div class="btn delete">delete</div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -140,22 +140,22 @@
                 <div class="form-content">
                     <div class="category">
                         <label for="title">Book title</label>
-                        <input type="text" id="title" name="book_title" placeholder="The Da Vinci Code">
+                        <input type="text" id="title" name="book_title" placeholder="The Da Vinci Code" required>
                     </div>
                     <div class="category">
                         <label for="author">Book author</label>
-                        <input type="text" id="author" name="book_author" placeholder="Dan Brown">
+                        <input type="text" id="author" name="book_author" placeholder="Dan Brown" required>
                     </div>
                     <div class="category">
                         <label for="pages">Book pages</label>
-                        <input type="number" id="pages" name="book_pages" placeholder="489">
+                        <input type="number" id="pages" name="book_pages" placeholder="489" required>
                     </div>
                     <div class="check">
                         <input type="checkbox" id="status" name="book_status">
                         <label for="status">Already read</label>
                     </div>
                 </div>
-                <button class="btn form-button">Add book</button>
+                <button class="btn form-button" type="submit">Add book</button>
             </form>
         </div>
     </div>
