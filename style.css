@@ -139,11 +139,16 @@ body::-webkit-scrollbar-thumb {
     background: #b5838d;
 }
 
-.status {
+.status.read {
     color: #fff;
     background: #52796f;
+    /* background: red; */
+}
+
+.status {
     margin-top: 20px;
 }
+
 
 .delete {
     background: #cad2c5;
@@ -170,7 +175,8 @@ body::-webkit-scrollbar-thumb {
 }
 .overlay {
     position: fixed;
-    display: flex;
+    /* display: flex; */
+    display: none;
     justify-content: center;
     align-items: center;
     top: 0;
@@ -218,7 +224,7 @@ body::-webkit-scrollbar-thumb {
 
 .overlay .form .form-title .title {
     text-transform: uppercase;
-    /* font-family: 'Roboto Slab', serif; */
+    font-family: 'Roboto Slab', serif;
     font-size: 30px;
     font-weight: 600;
     letter-spacing: 3px;
@@ -311,4 +317,5 @@ body::-webkit-scrollbar-thumb {
     font-weight: 600;
     font-family: 'Roboto Slab', serif;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5), -3px -3px 5px rgba(255, 255, 255, 0.2);
+    cursor: pointer;
 }
