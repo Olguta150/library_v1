@@ -133,16 +133,12 @@ body::-webkit-scrollbar-thumb {
     cursor: pointer;
     box-shadow: 5px 5px 6px rgba(0, 0, 0, 0.5), -3px -3px 6px rgba(255, 255, 255, 0.7);
     user-select: none;
+    color: #fff;
+    background: #52796f;
 }
 
 .status.tbr {
     background: #b5838d;
-}
-
-.status.read {
-    color: #fff;
-    background: #52796f;
-    /* background: red; */
 }
 
 .status {
@@ -151,6 +147,7 @@ body::-webkit-scrollbar-thumb {
 
 
 .delete {
+    color: #000;
     background: #cad2c5;
 }
 
