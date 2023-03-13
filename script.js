@@ -1,4 +1,3 @@
-// const btns = document.querySelectorAll('.btn');
 const openPopUpBtn = document.querySelector('.add-book-btn');
 const overlay = document.querySelector('.overlay');
 const closePopUpBtn = document.querySelector('.close-window');
@@ -18,11 +17,11 @@ class Book {
     }
 
     info() {
-        return `${this.bookTitle} by ${this.bookAuthor}, ${this.bookPages} pages, ${this.bookStatus}`;
+        return `${this.bookTitle} by ${this.bookAuthor}, ${this.bookPages} pages, ${this.bookStatus}------------------`;
     }
 }
 
-let myLibrary = [];
+const myLibrary = [];
 
 function popUpWindow() {
     overlay.style.display = "flex";
@@ -50,55 +49,38 @@ function displayBook(array) {
     grid.textContent = '';
     for(let i = 0; i < array.length; i++) {
         grid.innerHTML += `
-        <div class="book">
+        <div class="book ${i}">
             <div class="name">${array[i].bookTitle}</div>
             <div class="author">${array[i].bookAuthor}</div>
             <div class="pages">${array[i].bookPages}</div>
-            <div class="btn status">${array[i].bookStatus}</div>
+            <div class="btn status" data-index=${i}>${array[i].bookStatus}</div>
             <div class="btn delete">delete</div>
         </div>`;
 
-        const statusBtnBook = document.querySelector('.status');
-        console.log("status btn: ", statusBtnBook);
+        const statusBtnBook = document.querySelectorAll('.status');
 
-        // statusBtnBook.forEach(stat => {
-        //     if(array[i].bookStatus === "TBR") {
-        //         console.log("array status: ", array[i].bookStatus === "TBR");
-        //         stat.classList.add('tbr');
-        //     } else {
-        //         console.log(grid.innerHTML);
-        //         stat.classList.add('read');
-        //     }
-        // });
-
-        // if(array[i].bookStatus === "TBR") {
-        //     console.log("array status: ", array[i].bookStatus !== "read");
-        //     statusBtnBook.classList.add('tbr');
-        //     console.log(grid.innerHTML);
-        // } else if(array[i].bookStatus === "read"){
-        //     statusBtnBook.classList.add('read');
-        // }
-        
-        // statusBtnBook.forEach(stat => {
-        //     if(array[i].bookStatus !== "read") {
-        //         console.log("array status: ", array[i].bookStatus !== "read");
-        //         stat.classList.add('tbr');
-        //     } else {
-        //         console.log(grid.innerHTML);
-        //         stat.classList.remove('tbr');
-        //     }
-        // });
-
-        // if(array[i].bookStatus !== "read") {
-        //     console.log("array status: ", array[i].bookStatus !== "read");
-        //     statusBtnBook.forEach(stat => {
-        //         stat.classList.add('tbr');
-        //     });
-        //     console.log(grid.innerHTML);
-        // } else {
-        //     stat.classList.remove('tbr');
-        // }
+        statusBtnBook.forEach(stat => {
+            if(array[stat.dataset.index].bookStatus === "TBR") {
+                stat.classList.add('tbr');
+            }
+            
+        });
     }
+    
+    const statusBtn = document.querySelectorAll('.status');
+    
+    statusBtn.forEach(stat => {
+        function changeStatus() {
+            stat.classList.toggle('tbr');
+            if(stat.classList.contains('tbr')) {
+                stat.textContent = 'TBR';
+            } else {
+                stat.textContent = 'read';
+            }
+        }
+        stat.onclick = () => changeStatus();
+    });
+
 
     const btns = document.querySelectorAll('.btn');
 
@@ -115,15 +97,11 @@ function displayBook(array) {
     addShadow();
 }
 
-// displayBook(myLibrary);
-
-function createBook() {
+function addBookToLibrary() {
     const newBook = new Book(title.value, author.value, pages.value, checkStatus());
     myLibrary.push(newBook);
-    // displayBook(myLibrary);
 
     console.log(newBook.info());
-    // console.log(myLibrary);
 }
 
 openPopUpBtn.onclick = () => popUpWindow();
@@ -134,7 +112,7 @@ closePopUpBtn.onclick = () => {
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-    createBook();
+    addBookToLibrary();
     hidePopUpWindow();
     clearForm();
     displayBook(myLibrary);
