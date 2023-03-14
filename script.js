@@ -49,12 +49,12 @@ function displayBook(array) {
     grid.textContent = '';
     for(let i = 0; i < array.length; i++) {
         grid.innerHTML += `
-        <div class="book ${i}">
+        <div class="book data-index=${i}">
             <div class="name">${array[i].bookTitle}</div>
             <div class="author">${array[i].bookAuthor}</div>
             <div class="pages">${array[i].bookPages}</div>
             <div class="btn status" data-index=${i}>${array[i].bookStatus}</div>
-            <div class="btn delete">delete</div>
+            <div class="btn delete" data-index=${i}>delete</div>
         </div>`;
 
         const statusBtnBook = document.querySelectorAll('.status');
@@ -68,6 +68,7 @@ function displayBook(array) {
     }
     
     const statusBtn = document.querySelectorAll('.status');
+    const deleteBtn = document.querySelectorAll('.delete');
     
     statusBtn.forEach(stat => {
         function changeStatus() {
@@ -78,11 +79,22 @@ function displayBook(array) {
                 stat.textContent = 'read';
             }
         }
+
         stat.onclick = () => changeStatus();
+    });
+
+    deleteBtn.forEach(btn => {
+        function deleteBook(arr, index) {
+            arr.splice(index, 1);
+            displayBook(myLibrary);
+        }
+
+        btn.onclick = () => deleteBook(array, btn.dataset.index);
     });
 
 
     const btns = document.querySelectorAll('.btn');
+    console.log("btns: ", btns);
 
     function addShadow() {
         btns.forEach(btn => {
