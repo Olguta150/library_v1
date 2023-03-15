@@ -15,10 +15,6 @@ class Book {
         this.bookPages = bookPages;
         this.bookStatus = bookStatus;
     }
-
-    info() {
-        return `${this.bookTitle} by ${this.bookAuthor}, ${this.bookPages} pages, ${this.bookStatus}------------------`;
-    }
 }
 
 const myLibrary = [];
@@ -33,9 +29,9 @@ function hidePopUpWindow() {
 
 function checkStatus() {
     if(check.checked){
-        return 'read';
+        return true;
     }
-    return 'TBR';
+    return false;
 }
 
 function clearForm() {
@@ -45,7 +41,42 @@ function clearForm() {
     check.checked = false;
 }
 
+function addBookToLibrary() {
+    const newBook = new Book(title.value, author.value, pages.value, checkStatus());
+    myLibrary.push(newBook);
+}
+
+function bookDetails() {
+    const totalBooks = document.querySelector('.total-books');
+    const readBooks = document.querySelector('.read-books');
+    const tbrBooks = document.querySelector('.tbr-books');
+    const pagesRead = document.querySelector('.pages-read');
+
+    let readCounter = 0;
+    let tbrCounter = 0;
+    let pagesCounter = 0;
+    totalBooks.textContent = 0;
+    readBooks.textContent = 0;
+    tbrBooks.textContent = 0;
+    pagesRead.textContent = 0;
+
+    for(let i = 0; i < myLibrary.length; i++) {
+        if(myLibrary[i].bookStatus === true) {
+            pagesCounter += parseInt(myLibrary[i].bookPages);
+            readCounter += 1;
+            pagesRead.textContent = pagesCounter;
+            readBooks.textContent = readCounter;
+        } else if(myLibrary[i].bookStatus === false) {
+            tbrCounter += 1;
+            tbrBooks.textContent = tbrCounter;
+        }
+        totalBooks.textContent = myLibrary.length;
+    }
+}
+bookDetails();
+
 function displayBook(array) {
+    bookDetails();
     grid.textContent = '';
     for(let i = 0; i < array.length; i++) {
         grid.innerHTML += `
@@ -60,8 +91,11 @@ function displayBook(array) {
         const statusBtnBook = document.querySelectorAll('.status');
 
         statusBtnBook.forEach(stat => {
-            if(array[stat.dataset.index].bookStatus === "TBR") {
+            if(array[stat.dataset.index].bookStatus === false) {
                 stat.classList.add('tbr');
+                stat.textContent = 'TBR';
+            } else {
+                stat.textContent = 'read';
             }
             
         });
@@ -73,11 +107,14 @@ function displayBook(array) {
     statusBtn.forEach(stat => {
         function changeStatus() {
             stat.classList.toggle('tbr');
-            if(stat.classList.contains('tbr')) {
-                stat.textContent = 'TBR';
-            } else {
+            if(array[stat.dataset.index].bookStatus === false) {
                 stat.textContent = 'read';
+                array[stat.dataset.index].bookStatus = true;
+            } else if(array[stat.dataset.index].bookStatus === true) {
+                stat.textContent = 'TBR';
+                array[stat.dataset.index].bookStatus = false;
             }
+            bookDetails();
         }
 
         stat.onclick = () => changeStatus();
@@ -92,9 +129,7 @@ function displayBook(array) {
         btn.onclick = () => deleteBook(array, btn.dataset.index);
     });
 
-
     const btns = document.querySelectorAll('.btn');
-    console.log("btns: ", btns);
 
     function addShadow() {
         btns.forEach(btn => {
@@ -107,13 +142,6 @@ function displayBook(array) {
         });
     };
     addShadow();
-}
-
-function addBookToLibrary() {
-    const newBook = new Book(title.value, author.value, pages.value, checkStatus());
-    myLibrary.push(newBook);
-
-    console.log(newBook.info());
 }
 
 openPopUpBtn.onclick = () => popUpWindow();
